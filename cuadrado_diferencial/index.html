@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuadrado Diferencial</title>
+</head>
+<body>
+    <h1>Cálculo de Cuadrado Diferencial</h1>
+    <label for="x">x:</label>
+    <input type="number" id="x" step="any"><br><br>
+
+    <label for="dx">dx:</label>
+    <input type="number" id="dx" step="any"><br><br>
+
+    <button onclick="calcularDiferencial()">Calcular</button>
+
+    <h3>Resultado:</h3>
+    <pre id="resultado"></pre>
+
+    <script>
+        async function calcularDiferencial() {
+            const x = parseFloat(document.getElementById("x").value);
+            const dx = parseFloat(document.getElementById("dx").value);
+
+            const res = await fetch(`https://localhost:7132/api/Diferencial?x=${x}&dx=${dx}`);
+            const data = await res.json();
+
+            document.getElementById("resultado").textContent = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
